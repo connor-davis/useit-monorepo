@@ -1,6 +1,7 @@
 import { serve } from 'bun';
 
 import app from '@/app';
+import { createAdmin } from '@/lib/create-admin';
 import { runMigrations } from '@/lib/database';
 import env from '@/lib/env';
 
@@ -29,6 +30,8 @@ console.log(`
 `);
 
 console.log('🚀 The API is running on http://localhost:' + port);
+
+await createAdmin();
 
 serve({
   fetch: app.fetch,

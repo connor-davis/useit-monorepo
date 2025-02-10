@@ -16,3 +16,8 @@ export function threeLogger() {
     },
   });
 }
+
+export const processLogger = pino(
+  { level: env.LOG_LEVEL },
+  env.NODE_ENV === 'production' ? undefined : pretty()
+);
