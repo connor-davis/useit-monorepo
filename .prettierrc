@@ -6,7 +6,7 @@
   "importOrder": [
     "^hono|@hono|hono-$",
     "<THIRD_PARTY_MODULES>",
-    "^@/(.*)$",
+    "^@use-it/(.*)$",
     "^[./]"
   ],
   "importOrderSeparation": true,

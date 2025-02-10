@@ -1,0 +1,30 @@
+{
+  "name": "@use-it/threereco-backend",
+  "version": "0.0.1",
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/bun": "^1.2.2",
+    "@types/jsonwebtoken": "^9.0.8",
+    "@types/node": "^22.13.1",
+    "drizzle-kit": "^0.30.4",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "@hono/zod-openapi": "^0.18.4",
+    "@scalar/hono-api-reference": "^0.5.172",
+    "bcrypt": "^5.1.1",
+    "better-auth": "^1.1.16",
+    "date-fns": "^4.1.0",
+    "dotenv": "^16.4.7",
+    "dotenv-expand": "^12.0.1",
+    "drizzle-orm": "^0.39.2",
+    "drizzle-zod": "^0.7.0",
+    "hono": "^4.7.0",
+    "hono-pino": "^0.7.2",
+    "pino": "^9.6.0",
+    "pino-pretty": "^13.0.0",
+    "postgres": "^3.4.5",
+    "stoker": "^1.4.2",
+    "zod": "^3.24.1"
+  }
+}
