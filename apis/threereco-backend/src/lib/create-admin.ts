@@ -30,5 +30,5 @@ export const createAdmin: () => Promise<void> = async () => {
     password: password,
   });
 
-  processLogger.info('👩‍💼 Created admin user');
+  processLogger.info('✅ Created admin user.');
 };
