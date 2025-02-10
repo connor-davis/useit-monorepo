@@ -1,0 +1,1 @@
+ALTER TABLE "transactions" ALTER COLUMN "weight" SET DATA TYPE text;

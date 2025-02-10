@@ -4,9 +4,10 @@
   "tabWidth": 2,
   "trailingComma": "es5",
   "importOrder": [
-    "^hono|@hono|hono-$",
+    "^hono|@hono|hono-|react|react-$",
     "<THIRD_PARTY_MODULES>",
     "^@use-it/(.*)$",
+    "^@/(.*)$",
     "^[./]"
   ],
   "importOrderSeparation": true,
