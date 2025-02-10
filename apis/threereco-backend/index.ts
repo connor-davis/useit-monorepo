@@ -8,8 +8,9 @@ const port = env.PORT;
 
 try {
   await runMigrations();
-} catch {
-  console.log('✅ Migrations have been run.');
+} catch (error) {
+  console.error(error);
+  process.exit(1);
 }
 
 process.stdout.write('\x1Bc');
