@@ -17,6 +17,7 @@ export const sessions = pgTable('sessions', {
     .defaultNow(),
   ipAddress: text(),
   userAgent: text(),
+  impersonatedBy: text().references(() => users.id, { onDelete: 'set null' }),
   createdAt: timestamp({
     mode: 'date',
     precision: 6,

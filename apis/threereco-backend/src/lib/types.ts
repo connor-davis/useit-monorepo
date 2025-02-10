@@ -23,7 +23,7 @@ export const decimalNumber = customType<{ data: number }>({
   },
 });
 
-export const decimalInt = customType<{ data: number }>({
+export const bigintNumber = customType<{ data: number }>({
   dataType() {
     return 'bigint';
   },
