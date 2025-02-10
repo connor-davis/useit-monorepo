@@ -6,6 +6,7 @@ export const users = pgTable('users', {
   email: text().notNull(),
   emailVerified: boolean().notNull().default(true),
   image: text(),
+  twoFactorEnabled: boolean().notNull().default(false),
   createdAt: timestamp({
     mode: 'date',
     precision: 6,

@@ -1,6 +1,6 @@
 import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
-import { openAPI } from 'better-auth/plugins';
+import { openAPI, twoFactor } from 'better-auth/plugins';
 
 import database from '@/lib/database';
 import schemas from '@/schemas';
@@ -14,5 +14,5 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
   },
-  plugins: [openAPI()],
+  plugins: [openAPI(), twoFactor()],
 });
