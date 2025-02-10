@@ -15,6 +15,8 @@ try {
 
 process.stdout.write('\x1Bc');
 
+// Logs that must show need to go below this line
+
 console.log(`
   /$$$$$$            /$$$$$$$$                    
  /$$__  $$          | $$_____/                    

@@ -9,6 +9,9 @@ const Environment = z.object({
   PORT: z.coerce.number().default(4000),
   LOG_LEVEL: z.enum(['fatal', 'error', 'warn', 'info', 'debug', 'trace']),
 
+  ADMIN_EMAIL: z.string().email(),
+  ADMIN_PASSWORD: z.string(),
+
   DATABASE_URL: z.string().url(),
 
   BETTER_AUTH_SECRET: z.string(),
