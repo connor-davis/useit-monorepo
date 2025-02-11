@@ -10,8 +10,8 @@ export default function configureOpenAPI(app: OpenAPIHono<ThreeApiConfig>) {
     openapi: '3.0.0',
     info: {
       version: packageJSON.version,
-      title: 'Thusa One API',
-      description: 'The Thusa One API documentation.',
+      title: '3rEco API',
+      description: 'The 3rEco API documentation.',
     },
     servers: [
       {
@@ -19,7 +19,7 @@ export default function configureOpenAPI(app: OpenAPIHono<ThreeApiConfig>) {
         description: 'The development environment api.',
       },
       {
-        url: 'https://one.thusa.co.za',
+        url: 'https://3reco.lone-wolf.dev',
         description: 'The production environment api.',
       },
     ],
