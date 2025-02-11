@@ -3,10 +3,11 @@ import configureScalar from '@/lib/configure-scalar';
 import createApp from '@/lib/create-app';
 
 import index from './routes/index.router';
+import profile from './routes/profile/profile.router';
 
 const app = createApp();
 
-const apiRoutes = [index];
+const apiRoutes = [index, profile];
 const apiBasePath = '/api';
 
 configureOpenAPI(app);

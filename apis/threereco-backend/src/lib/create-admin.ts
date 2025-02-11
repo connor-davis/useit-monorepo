@@ -21,13 +21,14 @@ export const createAdmin: () => Promise<void> = async () => {
     name: '3rEco Administrator',
     email: env.ADMIN_EMAIL,
     role: 'admin',
+    emailVerified: true,
   });
 
-  await context.internalAdapter.createAccount({
+  await context.internalAdapter.linkAccount({
     accountId: adminUser.id,
-    providerId: 'email-password',
+    providerId: 'credential',
     userId: adminUser.id,
-    password: password,
+    password,
   });
 
   processLogger.info('✅ Created admin user.');

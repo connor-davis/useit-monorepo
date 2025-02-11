@@ -8,6 +8,8 @@ import createRouter from '@/lib/create-router';
 import { origin } from '@/lib/origins';
 import { threeLogger } from '@/middleware/pino-logger';
 
+import { auth } from './auth';
+
 export default function createApp() {
   const app = createRouter();
 
@@ -35,6 +37,30 @@ export default function createApp() {
       origin,
     })
   );
+
+  app.use('*', async (c, next) => {
+    const session = await auth.api.getSession({
+      headers: new Headers(c.req.raw.headers),
+    });
+
+    console.log('Session: ', session);
+
+    if (!session) {
+      c.set('user', null);
+      c.set('session', null);
+
+      return next();
+    }
+
+    c.set('user', session.user);
+    c.set('session', session.session);
+
+    return next();
+  });
+
+  app.on(['POST', 'GET'], '/api/auth/**', (c) => {
+    return auth.handler(c.req.raw);
+  });
 
   return app;
 }

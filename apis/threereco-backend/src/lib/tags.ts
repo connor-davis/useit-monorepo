@@ -3,6 +3,10 @@ const TAGS = {
     name: 'Index',
     description: 'The home route for the Thusa One API documentation.',
   },
+  PROFILE: {
+    name: 'Profile',
+    description: 'The user profile route.',
+  },
 };
 
 export default TAGS;

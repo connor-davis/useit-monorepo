@@ -10,6 +10,11 @@ import schemas from '@/schemas';
 import env from './env';
 
 export const auth = betterAuth({
+  appName: '3rEco',
+  baseURL:
+    env.NODE_ENV === 'production'
+      ? 'https://3reco.lone-wolf.dev'
+      : 'http://localhost:6173',
   database: drizzleAdapter(database, {
     provider: 'pg',
     schema: schemas,
@@ -19,15 +24,17 @@ export const auth = betterAuth({
     enabled: true,
     autoSignIn: true,
     minPasswordLength: 8,
+    requireEmailVerification: false,
   },
   advanced: {
-    crossSubDomainCookies: {
-      enabled: true,
+    generateId: () => createId(),
+    defaultCookieAttributes: {
+      secure: true,
+      httpOnly: true,
       domain:
         env.NODE_ENV === 'production' ? '3reco.lone-wolf.dev' : 'localhost',
+      sameSite: 'strict',
     },
-    useSecureCookies: true,
-    generateId: () => createId(),
   },
   trustedOrigins: origin,
   plugins: [openAPI(), twoFactor(), admin()],

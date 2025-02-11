@@ -1,4 +1,4 @@
-import { serve } from 'bun';
+import { serve } from '@hono/node-server';
 
 import app from '@/app';
 import { createAdmin } from '@/lib/create-admin';
