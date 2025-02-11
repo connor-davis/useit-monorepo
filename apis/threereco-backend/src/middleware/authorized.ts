@@ -1,8 +1,12 @@
 import { Context, Next } from 'hono';
 
 import HttpStatus from '@/lib/http-status';
+import { ThreeApiConfig } from '@/lib/types';
 
-export const authorized = async (context: Context, next: Next) => {
+export const authorized = async (
+  context: Context<ThreeApiConfig>,
+  next: Next
+) => {
   const session = context.get('session');
 
   if (!session)
