@@ -43,8 +43,6 @@ export default function createApp() {
       headers: new Headers(c.req.raw.headers),
     });
 
-    console.log('Session: ', session);
-
     if (!session) {
       c.set('user', null);
       c.set('session', null);
