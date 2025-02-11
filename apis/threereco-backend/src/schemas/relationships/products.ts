@@ -17,3 +17,11 @@ export const productBusiness = relations(products, ({ one }) => ({
     references: [businesses.id],
   }),
 }));
+
+export const materialProducts = relations(materials, ({ many }) => ({
+  products: many(products),
+}));
+
+export const businessProducts = relations(businesses, ({ many }) => ({
+  products: many(products),
+}));
