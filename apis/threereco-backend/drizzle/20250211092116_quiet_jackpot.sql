@@ -1,0 +1,2 @@
+ALTER TABLE "stock" ADD COLUMN "business_id" text NOT NULL;--> statement-breakpoint
+ALTER TABLE "stock" ADD CONSTRAINT "stock_business_id_businesses_id_fk" FOREIGN KEY ("business_id") REFERENCES "public"."businesses"("id") ON DELETE cascade ON UPDATE no action;
