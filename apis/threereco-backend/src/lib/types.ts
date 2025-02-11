@@ -2,6 +2,7 @@ import { RouteConfig, RouteHandler } from '@hono/zod-openapi';
 import { PinoLogger } from 'hono-pino';
 
 import { customType } from 'drizzle-orm/pg-core';
+import { z } from 'zod';
 
 import { auth } from './auth';
 
@@ -35,3 +36,8 @@ export const bigintNumber = customType<{ data: number }>({
     return Number(value);
   },
 });
+
+export const idSchema = z
+  .string()
+  .min(32, 'Please enter a valid id.')
+  .max(32, 'Please enter a valid id.');

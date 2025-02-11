@@ -7,6 +7,10 @@ const TAGS = {
     name: 'Profile',
     description: 'The user profile route.',
   },
+  BUSINESSES: {
+    name: 'Businesses',
+    description: 'The businesses route.',
+  },
 };
 
 export default TAGS;
