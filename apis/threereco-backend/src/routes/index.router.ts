@@ -31,6 +31,8 @@ const index = createRouter().openapi(
     },
   }),
   (context) => {
+    console.log(context.get('session'));
+
     return context.text(IndexText, 200);
   }
 );

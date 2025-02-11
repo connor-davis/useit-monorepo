@@ -7,6 +7,8 @@ import database from '@/lib/database';
 import { origin } from '@/lib/origins';
 import schemas from '@/schemas';
 
+import env from './env';
+
 export const auth = betterAuth({
   database: drizzleAdapter(database, {
     provider: 'pg',
@@ -19,6 +21,12 @@ export const auth = betterAuth({
     minPasswordLength: 8,
   },
   advanced: {
+    crossSubDomainCookies: {
+      enabled: true,
+      domain:
+        env.NODE_ENV === 'production' ? '3reco.lone-wolf.dev' : 'localhost',
+    },
+    useSecureCookies: true,
     generateId: () => createId(),
   },
   trustedOrigins: origin,

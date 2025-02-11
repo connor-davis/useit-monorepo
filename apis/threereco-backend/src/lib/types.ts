@@ -3,9 +3,13 @@ import { PinoLogger } from 'hono-pino';
 
 import { customType } from 'drizzle-orm/pg-core';
 
+import { auth } from './auth';
+
 export type ThreeApiConfig = {
   Variables: {
     logger: PinoLogger;
+    user: typeof auth.$Infer.Session.user | null;
+    session: typeof auth.$Infer.Session.session | null;
   };
 };
 

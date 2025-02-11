@@ -1,5 +1,5 @@
 import { accounts } from './accounts';
-import { businesses } from './business';
+import { businesses } from './businesses';
 import { collectors } from './collectors';
 import enums from './enums';
 import { materials } from './materials';

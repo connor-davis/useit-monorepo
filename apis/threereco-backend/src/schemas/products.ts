@@ -2,7 +2,7 @@ import { pgTable, text, timestamp } from 'drizzle-orm/pg-core';
 
 import { decimalNumber } from '@/lib/types';
 
-import { businesses } from './business';
+import { businesses } from './businesses';
 import { materials } from './materials';
 
 export const products = pgTable('products', {
