@@ -5,6 +5,7 @@ import enums from './enums';
 import { materials } from './materials';
 import { products } from './products';
 import { sessions } from './sessions';
+import { stock } from './stock';
 import { transactions } from './transactions';
 import { twoFactors } from './two-factors';
 import { users } from './users';
@@ -22,4 +23,5 @@ export default {
   products,
   transactions,
   collectors,
+  stock,
 };
