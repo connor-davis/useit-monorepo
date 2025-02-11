@@ -31,7 +31,8 @@ export const deleteBusinessRoute = createRoute({
       'The not-found error message.'
     ),
   },
-  middleware: async (context, next) => await authorized(context, next),
+  middleware: async (context, next) =>
+    await authorized(context, next, ['business']),
 });
 
 export type DeleteBusinessRoute = typeof deleteBusinessRoute;

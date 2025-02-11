@@ -7,30 +7,30 @@ import HttpStatus from '@/lib/http-status';
 import TAGS from '@/lib/tags';
 import { idSchema } from '@/lib/types';
 import { authorized } from '@/middleware/authorized';
-import { selectBusiness, updateBusiness } from '@/models/businesses';
+import { selectCollector, updateCollector } from '@/models/collectors';
 
-export const updateBusinessRoute = createRoute({
-  path: '/businesses/{id}',
+export const updateCollectorRoute = createRoute({
+  path: '/collectors/{id}',
   method: 'patch',
-  tags: [TAGS.BUSINESSES.name],
+  tags: [TAGS.COLLECTORS.name],
   request: {
     params: z.object({
       id: idSchema,
     }),
-    body: jsonContent(updateBusiness, "The updated business's data payload."),
+    body: jsonContent(updateCollector, "The updated collector's data payload."),
   },
   responses: {
     [HttpStatus.OK]: jsonContent(
-      selectBusiness,
-      "The updated business's data payload."
+      selectCollector,
+      "The updated collector's data payload."
     ),
     [HttpStatus.NOT_FOUND]: jsonContent(
-      createMessageObjectSchema('The business was not found.'),
+      createMessageObjectSchema('The collector was not found.'),
       'The not-found error message.'
     ),
   },
   middleware: async (context, next) =>
-    await authorized(context, next, ['business']),
+    await authorized(context, next, ['collector']),
 });
 
-export type UpdateBusinessRoute = typeof updateBusinessRoute;
+export type UpdateCollectorRoute = typeof updateCollectorRoute;

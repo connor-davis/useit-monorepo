@@ -11,6 +11,10 @@ const TAGS = {
     name: 'Businesses',
     description: 'The businesses route.',
   },
+  COLLECTORS: {
+    name: 'Collectors',
+    description: 'The collectors route.',
+  },
 };
 
 export default TAGS;
