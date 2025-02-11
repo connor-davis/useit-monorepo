@@ -1,5 +1,6 @@
-CREATE TYPE "public"."business_type" AS ENUM('Recycler', 'Waste Collector', 'Buy Back Centre');--> statement-breakpoint
-CREATE TYPE "public"."transaction_type" AS ENUM('collection', 'transfer');--> statement-breakpoint
+CREATE TYPE "public"."business_type" AS ENUM('Recycler', 'Waste Collector', 'Buy Back Centre');
+CREATE TYPE "public"."transaction_type" AS ENUM('collection', 'transfer');
+--> statement-breakpoint
 CREATE TABLE "businesses" (
 	"id" text PRIMARY KEY NOT NULL,
 	"user_id" text NOT NULL,
