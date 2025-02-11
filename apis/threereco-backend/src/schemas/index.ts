@@ -4,6 +4,7 @@ import { collectors } from './collectors';
 import enums from './enums';
 import { materials } from './materials';
 import { products } from './products';
+import relationships from './relationships';
 import { sessions } from './sessions';
 import { stock } from './stock';
 import { transactions } from './transactions';
@@ -24,4 +25,5 @@ export default {
   transactions,
   collectors,
   stock,
+  ...relationships,
 };
