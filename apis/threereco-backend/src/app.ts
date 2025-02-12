@@ -8,6 +8,7 @@ import index from './routes/index.router';
 import materials from './routes/materials/materials.router';
 import products from './routes/products/products.router';
 import profile from './routes/profile/profile.router';
+import stock from './routes/stock/stock.router';
 import transactions from './routes/transactions/transactions.router';
 
 const app = createApp();
@@ -20,6 +21,7 @@ const apiRoutes = [
   materials,
   products,
   transactions,
+  stock,
 ];
 const apiBasePath = '/api';
 
