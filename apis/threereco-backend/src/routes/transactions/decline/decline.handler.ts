@@ -22,6 +22,12 @@ export const declineTransactionHandler: ThreeApiHandler<
       HttpStatus.NOT_FOUND
     );
 
+  if (existingTransaction.sellerAccepted)
+    return context.json(
+      { message: 'The transaction was already accepted.' },
+      HttpStatus.CONFLICT
+    );
+
   await database
     .update(transactions)
     .set({ sellerDeclined: true })

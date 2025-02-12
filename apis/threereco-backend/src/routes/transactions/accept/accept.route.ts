@@ -26,6 +26,10 @@ export const acceptTransactionRoute = createRoute({
       },
       description: 'The transaction was accepted.',
     },
+    [HttpStatus.CONFLICT]: jsonContent(
+      createMessageObjectSchema('The transaction was already declined.'),
+      'The conflict error message.'
+    ),
     [HttpStatus.NOT_FOUND]: jsonContent(
       createMessageObjectSchema('The transaction was not found.'),
       'The not-found error message.'
