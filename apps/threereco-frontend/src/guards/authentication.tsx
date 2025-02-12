@@ -1,5 +1,8 @@
+import { Navigate } from '@tanstack/react-router';
 import { ReactNode } from 'react';
+
 import { TextShimmer } from '@use-it/ui/motion-ui/text-shimmer';
+
 import { authClient } from '@/lib/auth-client';
 
 export default function AuthenticationGuard({
@@ -20,7 +23,7 @@ export default function AuthenticationGuard({
       </div>
     );
 
-  if (error || !session) return undefined;
+  if (error || !session) return <Navigate to="/authentication/login" />;
 
   return children;
 }

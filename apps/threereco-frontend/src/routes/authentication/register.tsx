@@ -20,11 +20,12 @@ import { Label } from '@use-it/ui/components/label';
 
 import { authClient } from '@/lib/auth-client';
 
-export const Route = createFileRoute('/authentication/login')({
+export const Route = createFileRoute('/authentication/register')({
   component: RouteComponent,
 });
 
-const loginSchema = z.object({
+const registerSchema = z.object({
+  name: z.string(),
   email: z.string().email('Please enter a valid email address.'),
   password: z.string().min(8, 'Password must be at least 8 characters.'),
 });
@@ -32,9 +33,10 @@ const loginSchema = z.object({
 function RouteComponent() {
   const navigate = useNavigate();
 
-  const loginForm = useForm<z.infer<typeof loginSchema>>({
-    resolver: zodResolver(loginSchema),
+  const registerForm = useForm<z.infer<typeof registerSchema>>({
+    resolver: zodResolver(registerSchema),
     defaultValues: {
+      name: '',
       email: '',
       password: '',
     },
@@ -45,17 +47,18 @@ function RouteComponent() {
       <div className="flex flex-col w-auto h-auto p-3 gap-6 bg-background border rounded-md">
         <div className="flex flex-col w-full h-auto gap-3 text-center">
           <Label className="text-primary font-bold text-2xl">
-            3rEco Authentication
+            3rEco Registration
           </Label>
           <Label className="text-muted-foreground">
             Please enter your email and password below to authenticate.
           </Label>
         </div>
-        <Form {...loginForm}>
+        <Form {...registerForm}>
           <form
             className="flex flex-col w-full h-auto gap-3"
-            onSubmit={loginForm.handleSubmit(async (data) => {
-              const result = await authClient.signIn.email({
+            onSubmit={registerForm.handleSubmit(async (data) => {
+              const result = await authClient.signUp.email({
+                name: data.name,
                 email: data.email,
                 password: data.password,
               });
@@ -67,14 +70,29 @@ function RouteComponent() {
                 });
 
               return toast.success('Success', {
-                description: 'You have successfully authenticated.',
+                description: 'You have successfully registered.',
                 duration: 2000,
                 onAutoClose: () => navigate({ to: '/', replace: true }),
               });
             })}
           >
             <FormField
-              control={loginForm.control}
+              control={registerForm.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Name</FormLabel>
+                  <FormControl>
+                    <Input type="text" placeholder="Name" {...field} />
+                  </FormControl>
+                  <FormDescription>Enter your name.</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={registerForm.control}
               name="email"
               render={({ field }) => (
                 <FormItem>
@@ -89,7 +107,7 @@ function RouteComponent() {
             />
 
             <FormField
-              control={loginForm.control}
+              control={registerForm.control}
               name="password"
               render={({ field }) => (
                 <FormItem>
@@ -107,11 +125,11 @@ function RouteComponent() {
 
             <div className="flex items-center gap-3">
               <Label className="text-muted-foreground">
-                Don't have an account?
+                Already have an account?
               </Label>
-              <Link to="/authentication/register">
+              <Link to="/authentication/login">
                 <Label className="text-primary" asChild>
-                  <p>Create One</p>
+                  <p>Authenticate</p>
                 </Label>
               </Link>
             </div>
