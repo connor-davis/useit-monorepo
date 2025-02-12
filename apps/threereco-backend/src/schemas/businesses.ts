@@ -11,6 +11,7 @@ export const businesses = pgTable('businesses', {
   type: businessType().notNull(),
   description: text().notNull(),
   phoneNumber: text().notNull(),
+  address: text().notNull(),
   city: text().notNull(),
   province: text().notNull(),
   zipCode: text().notNull(),

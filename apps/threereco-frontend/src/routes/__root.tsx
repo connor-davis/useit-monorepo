@@ -2,13 +2,13 @@ import { Outlet, createRootRoute } from '@tanstack/react-router';
 
 import { TanStackRouterDevtools } from '@tanstack/router-devtools';
 
-import UiProviders from '@use-it/ui/components/providers';
+import Providers from '@/components/providers';
 
 export const Route = createRootRoute({
   component: () => (
-    <UiProviders>
+    <Providers>
       <Outlet />
       <TanStackRouterDevtools />
-    </UiProviders>
+    </Providers>
   ),
 });

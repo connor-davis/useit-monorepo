@@ -10,11 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@hey-api/client-fetch": "^0.8.1",
     "@hookform/resolvers": "^4.0.0",
     "@tailwindcss/vite": "^4.0.6",
+    "@tanstack/react-query": "^5.66.0",
     "@tanstack/react-router": "^1.102.5",
     "@use-it/ui": "workspace:*",
     "better-auth": "^1.1.17",
+    "lucide-react": "^0.475.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.54.2",
@@ -25,6 +28,7 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
+    "@hey-api/openapi-ts": "^0.64.3",
     "@tanstack/router-devtools": "^1.102.5",
     "@tanstack/router-plugin": "^1.102.5",
     "@types/node": "^22.13.1",
