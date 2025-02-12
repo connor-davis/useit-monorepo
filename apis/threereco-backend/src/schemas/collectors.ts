@@ -7,7 +7,6 @@ export const collectors = pgTable('collectors', {
   userId: text()
     .notNull()
     .references(() => users.id),
-  name: text().notNull(),
   idNumber: text().notNull(),
   phoneNumber: text().notNull(),
   address: text().notNull(),

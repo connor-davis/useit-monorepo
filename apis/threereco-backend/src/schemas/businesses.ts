@@ -8,7 +8,6 @@ export const businesses = pgTable('businesses', {
   userId: text()
     .notNull()
     .references(() => users.id, { onDelete: 'cascade' }),
-  name: text().notNull(),
   type: businessType().notNull(),
   description: text().notNull(),
   phoneNumber: text().notNull(),
