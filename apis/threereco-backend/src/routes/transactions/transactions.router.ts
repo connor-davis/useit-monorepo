@@ -4,6 +4,8 @@ import { acceptTransactionHandler } from './accept/accept.handler';
 import { acceptTransactionRoute } from './accept/accept.route';
 import { createTransactionHandler } from './create/create.handler';
 import { createTransactionRoute } from './create/create.route';
+import { declineTransactionHandler } from './decline/decline.handler';
+import { declineTransactionRoute } from './decline/decline.route';
 import {
   viewTransactionHandler,
   viewTransactionsHandler,
@@ -14,6 +16,7 @@ const transactions = createRouter()
   .openapi(viewTransactionsRoute, viewTransactionsHandler)
   .openapi(viewTransactionRoute, viewTransactionHandler)
   .openapi(createTransactionRoute, createTransactionHandler)
-  .openapi(acceptTransactionRoute, acceptTransactionHandler);
+  .openapi(acceptTransactionRoute, acceptTransactionHandler)
+  .openapi(declineTransactionRoute, declineTransactionHandler);
 
 export default transactions;
