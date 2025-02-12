@@ -6,6 +6,26 @@
     "./*": [
       "./src/*.ts",
       "./src/*.tsx"
+    ],
+    "./components/*": [
+      "./src/components/*.ts",
+      "./src/components/*.tsx"
+    ],
+    "./hooks/*": [
+      "./src/hooks/*.ts",
+      "./src/hooks/*.tsx"
+    ],
+    "./lib/*": [
+      "./src/lib/*.ts",
+      "./src/lib/*.tsx"
+    ],
+    "./motion-ui/*": [
+      "./src/motion-ui/*.ts",
+      "./src/motion-ui/*.tsx"
+    ],
+    "./spinners/*": [
+      "./src/spinners/*.ts",
+      "./src/spinners/*.tsx"
     ]
   },
   "devDependencies": {
