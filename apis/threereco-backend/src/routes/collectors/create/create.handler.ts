@@ -15,6 +15,7 @@ export const createCollectorHandler: ThreeApiHandler<
 
   const existingCollector = await database.query.collectors.findFirst({
     where: or(
+      eq(collectors.userId, payload.userId),
       eq(collectors.idNumber, payload.idNumber),
       eq(collectors.phoneNumber, payload.phoneNumber)
     ),
@@ -23,8 +24,7 @@ export const createCollectorHandler: ThreeApiHandler<
   if (existingCollector)
     return context.json(
       {
-        message:
-          'There is already a collector with that ID number or phone number.',
+        message: 'There is already an existing collector.',
       },
       HttpStatus.CONFLICT
     );

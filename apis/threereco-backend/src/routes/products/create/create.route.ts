@@ -6,27 +6,29 @@ import createMessageObjectSchema from 'stoker/openapi/schemas/create-message-obj
 import HttpStatus from '@/lib/http-status';
 import TAGS from '@/lib/tags';
 import { authorized } from '@/middleware/authorized';
-import { insertCollector, selectCollector } from '@/models/collectors';
+import { insertProduct, selectProduct } from '@/models/products';
 
-export const createCollectorRoute = createRoute({
-  path: '/collectors',
+export const createProductRoute = createRoute({
+  path: '/products',
   method: 'post',
-  tags: [TAGS.COLLECTORS.name],
+  tags: [TAGS.PRODUCTS.name],
   request: {
-    body: jsonContent(insertCollector, "The new collector's data payload."),
+    body: jsonContent(insertProduct, "The new product's data payload."),
   },
   responses: {
     [HttpStatus.CREATED]: jsonContent(
-      selectCollector,
-      "The new collector's data payload."
+      selectProduct,
+      "The new product's data payload."
     ),
     [HttpStatus.CONFLICT]: jsonContent(
-      createMessageObjectSchema('There is already an existing collector.'),
+      createMessageObjectSchema(
+        'There is already a product with that material.'
+      ),
       'The conflict error message.'
     ),
   },
   middleware: async (context, next) =>
-    await authorized(context, next, ['collector']),
+    await authorized(context, next, ['business']),
 });
 
-export type CreateCollectorRoute = typeof createCollectorRoute;
+export type CreateProductRoute = typeof createProductRoute;

@@ -19,6 +19,10 @@ const TAGS = {
     name: 'Materials',
     description: 'The materials route.',
   },
+  PRODUCTS: {
+    name: 'Products',
+    description: 'The products route.',
+  },
 };
 
 export default TAGS;

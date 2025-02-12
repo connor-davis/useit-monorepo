@@ -21,7 +21,7 @@ export const createBusinessRoute = createRoute({
       "The new business's data payload."
     ),
     [HttpStatus.CONFLICT]: jsonContent(
-      createMessageObjectSchema('There is already a business with that name.'),
+      createMessageObjectSchema('There is already an existing business.'),
       'The conflict error message.'
     ),
   },

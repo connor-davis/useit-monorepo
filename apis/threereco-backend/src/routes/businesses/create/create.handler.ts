@@ -14,12 +14,12 @@ export const createBusinessHandler: ThreeApiHandler<
   const payload = context.req.valid('json');
 
   const existingBusiness = await database.query.businesses.findFirst({
-    where: eq(businesses.name, payload.name),
+    where: eq(businesses.userId, payload.userId),
   });
 
   if (existingBusiness)
     return context.json(
-      { message: 'There is already a business with that name.' },
+      { message: 'There is already an existing business.' },
       HttpStatus.CONFLICT
     );
 
