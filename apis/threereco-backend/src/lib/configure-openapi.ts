@@ -7,7 +7,7 @@ import packageJSON from '../../package.json';
 
 export default function configureOpenAPI(app: OpenAPIHono<ThreeApiConfig>) {
   app.doc('/api/api-spec', {
-    openapi: '3.0.0',
+    openapi: '3.1.1',
     info: {
       version: packageJSON.version,
       title: '3rEco API',
