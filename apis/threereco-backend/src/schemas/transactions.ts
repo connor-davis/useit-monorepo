@@ -25,6 +25,7 @@ export const transactions = pgTable('transactions', {
   weight: bigintNumber().notNull(),
   amount: decimalNumber().notNull(),
   sellerAccepted: boolean().notNull().default(false),
+  sellerDeclined: boolean().notNull().default(false),
   createdAt: timestamp({
     mode: 'date',
     precision: 6,
