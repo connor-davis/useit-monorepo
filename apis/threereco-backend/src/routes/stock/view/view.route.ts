@@ -4,6 +4,7 @@ import jsonContent from 'stoker/openapi/helpers/json-content';
 
 import HttpStatus from '@/lib/http-status';
 import TAGS from '@/lib/tags';
+import { authorized } from '@/middleware/authorized';
 import { selectAllStock } from '@/models/stock';
 
 export const viewStockRoute = createRoute({
@@ -13,6 +14,7 @@ export const viewStockRoute = createRoute({
   responses: {
     [HttpStatus.OK]: jsonContent(selectAllStock, 'The stock list.'),
   },
+  middleware: async (context, next) => await authorized(context, next),
 });
 
 export type ViewStockRoute = typeof viewStockRoute;
