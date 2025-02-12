@@ -1,0 +1,1 @@
+ALTER TABLE "transactions" ADD COLUMN "seller_declined" boolean DEFAULT false NOT NULL;
