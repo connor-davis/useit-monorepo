@@ -12,7 +12,8 @@ export const stock = pgTable('stock', {
     .references(() => businesses.id, { onDelete: 'cascade' }),
   productId: text()
     .notNull()
-    .references(() => products.id, { onDelete: 'cascade' }),
+    .references(() => products.id, { onDelete: 'cascade' })
+    .unique(),
   weight: decimalNumber().notNull(),
   createdAt: timestamp({
     mode: 'date',
