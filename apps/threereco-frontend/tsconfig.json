@@ -1,0 +1,18 @@
+{
+  "extends": "@use-it/typescript-config/base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "tailwind.config.mjs",
+    "postcss.config.ts",
+    "tailwind.config.js"
+  ],
+  "exclude": ["node_modules"]
+}

@@ -1,7 +1,8 @@
 import { ChevronRightIcon, DotsHorizontalIcon } from '@radix-ui/react-icons';
 import { Slot } from '@radix-ui/react-slot';
-import { cn } from '@repo/ui/lib/utils';
 import * as React from 'react';
+
+import { cn } from '@use-it/ui/lib/utils';
 
 const Breadcrumb = React.forwardRef<
   HTMLElement,
@@ -19,7 +20,7 @@ const BreadcrumbList = React.forwardRef<
     ref={ref}
     className={cn(
       'text-muted-foreground flex flex-wrap items-center gap-1.5 break-words text-sm sm:gap-2.5',
-      className,
+      className
     )}
     {...props}
   />

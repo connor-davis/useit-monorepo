@@ -1,5 +1,6 @@
-import { cn } from '@repo/ui/lib/utils';
 import { LoaderIcon } from 'lucide-react';
+
+import { cn } from '@use-it/ui/lib/utils';
 
 interface SpinnerProps {
   size?: string;

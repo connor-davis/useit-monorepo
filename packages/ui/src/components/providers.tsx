@@ -1,7 +1,8 @@
-import { Toaster } from '@repo/ui/components/sonner';
-import { ThemeProvider } from '@repo/ui/components/theme-provider';
-import { TooltipProvider } from '@repo/ui/components/tooltip';
 import { ReactNode } from 'react';
+
+import { Toaster } from '@use-it/ui/components/sonner';
+import { ThemeProvider } from '@use-it/ui/components/theme-provider';
+import { TooltipProvider } from '@use-it/ui/components/tooltip';
 
 export default function UiProviders({ children }: { children: ReactNode }) {
   return (

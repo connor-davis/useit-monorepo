@@ -3,9 +3,10 @@ import {
   ChevronRightIcon,
   DotsHorizontalIcon,
 } from '@radix-ui/react-icons';
-import { ButtonProps, buttonVariants } from '@repo/ui/components/button';
-import { cn } from '@repo/ui/lib/utils';
 import * as React from 'react';
+
+import { ButtonProps, buttonVariants } from '@use-it/ui/components/button';
+import { cn } from '@use-it/ui/lib/utils';
 
 const Pagination = ({ className, ...props }: React.ComponentProps<'nav'>) => (
   <nav
@@ -55,7 +56,7 @@ const PaginationLink = ({
         variant: isActive ? 'outline' : 'ghost',
         size,
       }),
-      className,
+      className
     )}
     {...props}
   />

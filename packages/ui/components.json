@@ -11,12 +11,12 @@
     "prefix": ""
   },
   "aliases": {
-    "motion-ui": "@repo/ui/motion-ui",
-    "components": "@repo/ui/components",
-    "utils": "@repo/ui/lib/utils",
-    "ui": "@repo/ui/components",
-    "lib": "@repo/ui/lib",
-    "hooks": "@repo/ui/hooks"
+    "motion-ui": "@use-it/ui/motion-ui",
+    "components": "@use-it/ui/components",
+    "utils": "@use-it/ui/lib/utils",
+    "ui": "@use-it/ui/components",
+    "lib": "@use-it/ui/lib",
+    "hooks": "@use-it/ui/hooks"
   },
   "iconLibrary": "lucide"
 }

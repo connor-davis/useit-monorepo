@@ -1,17 +1,18 @@
 'use client';
 
-import { Button, type ButtonProps } from '@repo/ui/components/button';
-import { Input } from '@repo/ui/components/input';
+import { XIcon } from 'lucide-react';
+import { forwardRef, useMemo, useState } from 'react';
+import { HexColorPicker } from 'react-colorful';
+
+import { Button, type ButtonProps } from '@use-it/ui/components/button';
+import { Input } from '@use-it/ui/components/input';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@repo/ui/components/popover';
-import { useForwardedRef } from '@repo/ui/lib/use-forwarded-ref';
-import { cn } from '@repo/ui/lib/utils';
-import { XIcon } from 'lucide-react';
-import { forwardRef, useMemo, useState } from 'react';
-import { HexColorPicker } from 'react-colorful';
+} from '@use-it/ui/components/popover';
+import { useForwardedRef } from '@use-it/ui/lib/use-forwarded-ref';
+import { cn } from '@use-it/ui/lib/utils';
 
 interface ColorPickerProps {
   value: string;
@@ -37,7 +38,7 @@ const ColorPicker = forwardRef<
       previewClassName,
       ...props
     },
-    forwardedRef,
+    forwardedRef
   ) => {
     const ref = useForwardedRef(forwardedRef);
     const [open, setOpen] = useState(false);
@@ -53,7 +54,7 @@ const ColorPicker = forwardRef<
             {...props}
             className={cn(
               'flex flex-col items-center justify-center gap-1',
-              className,
+              className
             )}
             name={name}
             onClick={() => {
@@ -91,7 +92,7 @@ const ColorPicker = forwardRef<
         </PopoverContent>
       </Popover>
     );
-  },
+  }
 );
 ColorPicker.displayName = 'ColorPicker';
 

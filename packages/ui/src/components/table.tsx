@@ -1,5 +1,6 @@
-import { cn } from '@repo/ui/lib/utils';
 import * as React from 'react';
+
+import { cn } from '@use-it/ui/lib/utils';
 
 const Table = React.forwardRef<
   HTMLTableElement,
@@ -43,7 +44,7 @@ const TableFooter = React.forwardRef<
     ref={ref}
     className={cn(
       'bg-muted/50 border-t font-medium last:[&>tr]:border-b-0',
-      className,
+      className
     )}
     {...props}
   />
@@ -58,7 +59,7 @@ const TableRow = React.forwardRef<
     ref={ref}
     className={cn(
       'hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors',
-      className,
+      className
     )}
     {...props}
   />
@@ -73,7 +74,7 @@ const TableHead = React.forwardRef<
     ref={ref}
     className={cn(
       'text-muted-foreground h-10 px-2 text-left align-middle font-medium [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]',
-      className,
+      className
     )}
     {...props}
   />
@@ -88,7 +89,7 @@ const TableCell = React.forwardRef<
     ref={ref}
     className={cn(
       'p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]',
-      className,
+      className
     )}
     {...props}
   />

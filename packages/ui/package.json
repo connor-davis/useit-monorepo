@@ -1,28 +1,25 @@
 {
   "name": "@use-it/ui",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "private": true,
   "exports": {
-    "./globals.css": "./src/globals.css",
     "./*": [
-      "./src/**/*.ts",
-      "./src/lib/*.tsx"
+      "./src/*.ts",
+      "./src/*.tsx"
     ]
   },
   "devDependencies": {
     "@use-it/typescript-config": "workspace:*",
     "@tailwindcss/typography": "^0.5.15",
     "@types/node": "^22.9.0",
-    "@types/react": "^18.3.0",
-    "@types/react-dom": "^18.3.1",
-    "autoprefixer": "^10.4.20",
-    "postcss": "^8.4.47",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
     "tailwindcss": "^4.0.0",
     "@tailwindcss/vite": "^4.0.0",
     "typescript": "^5.6.3"
   },
   "dependencies": {
-    "@hookform/resolvers": "^3.9.0",
+    "@hookform/resolvers": "^4.0.0",
     "@radix-ui/react-accordion": "^1.2.1",
     "@radix-ui/react-alert-dialog": "^1.1.2",
     "@radix-ui/react-aspect-ratio": "^1.1.0",
@@ -63,10 +60,10 @@
     "lucide-react": "^0.475.0",
     "motion": "^12.0.6",
     "next-themes": "^0.4.3",
-    "react": "^18.3.1",
+    "react": "^19.0.0",
     "react-colorful": "^5.6.1",
-    "react-day-picker": "^8.10.1",
-    "react-dom": "^18.3.1",
+    "react-day-picker": "^9.5.1",
+    "react-dom": "^19.0.0",
     "react-hook-form": "^7.53.1",
     "react-qr-code": "^2.0.15",
     "react-resizable-panels": "^2.1.6",
