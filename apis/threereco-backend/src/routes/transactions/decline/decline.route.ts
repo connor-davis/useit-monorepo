@@ -9,7 +9,7 @@ import { idSchema } from '@/lib/types';
 import { authorized } from '@/middleware/authorized';
 
 export const declineTransactionRoute = createRoute({
-  path: '/transactions/{id}',
+  path: '/transactions/decline/{id}',
   method: 'patch',
   tags: [TAGS.TRANSACTIONS.name],
   request: {
