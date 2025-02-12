@@ -8,10 +8,19 @@ import index from './routes/index.router';
 import materials from './routes/materials/materials.router';
 import products from './routes/products/products.router';
 import profile from './routes/profile/profile.router';
+import transactions from './routes/transactions/transactions.router';
 
 const app = createApp();
 
-const apiRoutes = [index, profile, businesses, collectors, materials, products];
+const apiRoutes = [
+  index,
+  profile,
+  businesses,
+  collectors,
+  materials,
+  products,
+  transactions,
+];
 const apiBasePath = '/api';
 
 configureOpenAPI(app);

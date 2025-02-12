@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp } from 'drizzle-orm/pg-core';
+import { boolean, pgTable, text, timestamp } from 'drizzle-orm/pg-core';
 
 import { bigintNumber, decimalNumber } from '@/lib/types';
 
@@ -24,6 +24,7 @@ export const transactions = pgTable('transactions', {
   type: transactionType().notNull(),
   weight: bigintNumber().notNull(),
   amount: decimalNumber().notNull(),
+  sellerAccepted: boolean().notNull().default(false),
   createdAt: timestamp({
     mode: 'date',
     precision: 6,

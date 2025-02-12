@@ -1,0 +1,1 @@
+ALTER TABLE "transactions" ADD COLUMN "seller_accepted" boolean DEFAULT false NOT NULL;
