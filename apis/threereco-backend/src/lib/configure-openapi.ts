@@ -23,6 +23,11 @@ export default function configureOpenAPI(app: OpenAPIHono<ThreeApiConfig>) {
         description: 'The production environment api.',
       },
     ],
-    tags: Object.values(TAGS),
+    tags: Object.values(TAGS).sort((a, b) => {
+      if (a.name > b.name) return 1;
+      if (a.name < b.name) return -1;
+
+      return 0;
+    }),
   });
 }
