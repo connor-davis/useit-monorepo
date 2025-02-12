@@ -4,6 +4,9 @@ import { PinoLogger } from 'hono-pino';
 import { customType } from 'drizzle-orm/pg-core';
 import { z } from 'zod';
 
+import { selectBusiness } from '@/models/businesses';
+import { selectCollector } from '@/models/collectors';
+
 import { auth } from './auth';
 
 export type ThreeApiConfig = {
@@ -11,6 +14,8 @@ export type ThreeApiConfig = {
     logger: PinoLogger;
     user: typeof auth.$Infer.Session.user | null;
     session: typeof auth.$Infer.Session.session | null;
+    business: typeof selectBusiness._type | null;
+    collector: typeof selectCollector._type | null;
   };
 };
 

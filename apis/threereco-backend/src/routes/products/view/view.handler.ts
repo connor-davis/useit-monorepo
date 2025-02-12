@@ -10,7 +10,10 @@ import { ViewProductRoute, ViewProductsRoute } from './view.route';
 export const viewProductsHandler: ThreeApiHandler<ViewProductsRoute> = async (
   context
 ) => {
+  const business = context.get('business');
+
   const ascProducts = await database.query.products.findMany({
+    where: business ? eq(products.businessId, business.id) : undefined,
     orderBy: [asc(products.createdAt)],
   });
 

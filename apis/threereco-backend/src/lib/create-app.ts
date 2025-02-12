@@ -2,13 +2,17 @@ import { cors } from 'hono/cors';
 import { csrf } from 'hono/csrf';
 import { secureHeaders } from 'hono/secure-headers';
 
+import { eq } from 'drizzle-orm';
 import { notFound, onError, serveEmojiFavicon } from 'stoker/middlewares';
 
 import createRouter from '@/lib/create-router';
 import { origin } from '@/lib/origins';
 import { threeLogger } from '@/middleware/pino-logger';
+import { businesses } from '@/schemas/businesses';
+import { collectors } from '@/schemas/collectors';
 
 import { auth } from './auth';
+import database from './database';
 
 export default function createApp() {
   const app = createRouter();
@@ -52,6 +56,16 @@ export default function createApp() {
 
     c.set('user', session.user);
     c.set('session', session.session);
+
+    const business = await database.query.businesses.findFirst({
+      where: eq(businesses.userId, session.user.id),
+    });
+    const collector = await database.query.collectors.findFirst({
+      where: eq(collectors.userId, session.user.id),
+    });
+
+    c.set('business', business ?? null);
+    c.set('collector', collector ?? null);
 
     return next();
   });

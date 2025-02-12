@@ -1,4 +1,4 @@
-import { asc, eq } from 'drizzle-orm';
+import { asc, eq, or } from 'drizzle-orm';
 
 import database from '@/lib/database';
 import HttpStatus from '@/lib/http-status';
@@ -10,7 +10,15 @@ import { ViewTransactionRoute, ViewTransactionsRoute } from './view.route';
 export const viewTransactionsHandler: ThreeApiHandler<
   ViewTransactionsRoute
 > = async (context) => {
+  const business = context.get('business');
+
   const ascTransactions = await database.query.transactions.findMany({
+    where: business
+      ? or(
+          eq(transactions.buyerId, business.userId),
+          eq(transactions.sellerId, business.userId)
+        )
+      : undefined,
     orderBy: [asc(transactions.createdAt)],
   });
 
