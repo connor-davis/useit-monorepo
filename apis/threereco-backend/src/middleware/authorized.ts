@@ -24,7 +24,7 @@ export const authorized = async (
       {
         message: 'You do not have permission to access this endpoint.',
       },
-      HttpStatus.UNAUTHORIZED
+      HttpStatus.FORBIDDEN
     );
 
   await next();

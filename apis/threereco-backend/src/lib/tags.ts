@@ -1,7 +1,7 @@
 const TAGS = {
   INDEX: {
     name: 'Index',
-    description: 'The home route for the Thusa One API documentation.',
+    description: 'The index route.',
   },
   PROFILE: {
     name: 'Profile',
@@ -14,6 +14,10 @@ const TAGS = {
   COLLECTORS: {
     name: 'Collectors',
     description: 'The collectors route.',
+  },
+  MATERIALS: {
+    name: 'Materials',
+    description: 'The materials route.',
   },
 };
 
