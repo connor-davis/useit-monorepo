@@ -9,9 +9,7 @@ export const Route = createFileRoute('/_auth/')({
 function RouteComponent() {
   return (
     <div className="flex flex-col size-full items-center justify-center">
-      <Label className="text-muted-foreground selection:bg-primary selection:text-primary-foreground">
-        Welcome to 3rEco.
-      </Label>
+      <Label className="text-muted-foreground">Welcome to 3rEco.</Label>
     </div>
   );
 }
