@@ -4,6 +4,11 @@
 /* @import url("/node_modules/react-resizable/css/styles.css"); */
 
 ::selection {
+  color: var(--background);
+  background: var(--primary);
+}
+
+.dark ::selection {
   color: var(--foreground);
   background: var(--primary);
 }
