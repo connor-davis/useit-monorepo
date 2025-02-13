@@ -4,7 +4,7 @@ import { XIcon } from 'lucide-react';
 import { forwardRef, useMemo, useState } from 'react';
 import { HexColorPicker } from 'react-colorful';
 
-import { Button, type ButtonProps } from '@use-it/ui/components/button';
+import { Button } from '@use-it/ui/components/button';
 import { Input } from '@use-it/ui/components/input';
 import {
   Popover,
@@ -24,7 +24,8 @@ interface ColorPickerProps {
 
 const ColorPicker = forwardRef<
   HTMLInputElement,
-  Omit<ButtonProps, 'value' | 'onChange' | 'onBlur'> & ColorPickerProps
+  Omit<React.ComponentProps<'button'>, 'value' | 'onChange' | 'onBlur'> &
+    ColorPickerProps
 >(
   (
     {

@@ -17,6 +17,7 @@ import { Route as AuthIndexImport } from './routes/_auth/index'
 import { Route as AuthenticationRegisterImport } from './routes/authentication/register'
 import { Route as AuthenticationLoginImport } from './routes/authentication/login'
 import { Route as OnboardingSetupImport } from './routes/_onboarding/setup'
+import { Route as AuthUsersIndexImport } from './routes/_auth/users/index'
 
 // Create/Update Routes
 
@@ -52,6 +53,12 @@ const OnboardingSetupRoute = OnboardingSetupImport.update({
   id: '/setup',
   path: '/setup',
   getParentRoute: () => OnboardingRoute,
+} as any)
+
+const AuthUsersIndexRoute = AuthUsersIndexImport.update({
+  id: '/users/',
+  path: '/users/',
+  getParentRoute: () => AuthRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
@@ -100,6 +107,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthIndexImport
       parentRoute: typeof AuthImport
     }
+    '/_auth/users/': {
+      id: '/_auth/users/'
+      path: '/users'
+      fullPath: '/users'
+      preLoaderRoute: typeof AuthUsersIndexImport
+      parentRoute: typeof AuthImport
+    }
   }
 }
 
@@ -107,10 +121,12 @@ declare module '@tanstack/react-router' {
 
 interface AuthRouteChildren {
   AuthIndexRoute: typeof AuthIndexRoute
+  AuthUsersIndexRoute: typeof AuthUsersIndexRoute
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
   AuthIndexRoute: AuthIndexRoute,
+  AuthUsersIndexRoute: AuthUsersIndexRoute,
 }
 
 const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
@@ -133,6 +149,7 @@ export interface FileRoutesByFullPath {
   '/authentication/login': typeof AuthenticationLoginRoute
   '/authentication/register': typeof AuthenticationRegisterRoute
   '/': typeof AuthIndexRoute
+  '/users': typeof AuthUsersIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -141,6 +158,7 @@ export interface FileRoutesByTo {
   '/authentication/login': typeof AuthenticationLoginRoute
   '/authentication/register': typeof AuthenticationRegisterRoute
   '/': typeof AuthIndexRoute
+  '/users': typeof AuthUsersIndexRoute
 }
 
 export interface FileRoutesById {
@@ -151,6 +169,7 @@ export interface FileRoutesById {
   '/authentication/login': typeof AuthenticationLoginRoute
   '/authentication/register': typeof AuthenticationRegisterRoute
   '/_auth/': typeof AuthIndexRoute
+  '/_auth/users/': typeof AuthUsersIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -161,8 +180,15 @@ export interface FileRouteTypes {
     | '/authentication/login'
     | '/authentication/register'
     | '/'
+    | '/users'
   fileRoutesByTo: FileRoutesByTo
-  to: '' | '/setup' | '/authentication/login' | '/authentication/register' | '/'
+  to:
+    | ''
+    | '/setup'
+    | '/authentication/login'
+    | '/authentication/register'
+    | '/'
+    | '/users'
   id:
     | '__root__'
     | '/_auth'
@@ -171,6 +197,7 @@ export interface FileRouteTypes {
     | '/authentication/login'
     | '/authentication/register'
     | '/_auth/'
+    | '/_auth/users/'
   fileRoutesById: FileRoutesById
 }
 
@@ -207,7 +234,8 @@ export const routeTree = rootRoute
     "/_auth": {
       "filePath": "_auth.tsx",
       "children": [
-        "/_auth/"
+        "/_auth/",
+        "/_auth/users/"
       ]
     },
     "/_onboarding": {
@@ -228,6 +256,10 @@ export const routeTree = rootRoute
     },
     "/_auth/": {
       "filePath": "_auth/index.tsx",
+      "parent": "/_auth"
+    },
+    "/_auth/users/": {
+      "filePath": "_auth/users/index.tsx",
       "parent": "/_auth"
     }
   }

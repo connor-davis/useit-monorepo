@@ -6,8 +6,8 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@use-it/ui//components/dropdown-menu';
-import { useTheme } from '@use-it/ui//components/theme-provider';
+} from '@use-it/ui/components/dropdown-menu';
+import { useTheme } from '@use-it/ui/components/theme-provider';
 
 export default function ThemeToggleButton({
   className,

@@ -14,14 +14,20 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from '@use-it/ui/components/dropdown-menu';
 import { Label } from '@use-it/ui/components/label';
 import { Skeleton } from '@use-it/ui/components/skeleton';
+import { useTheme } from '@use-it/ui/components/theme-provider';
 
 import { authClient } from '@/lib/auth-client';
 
 export default function ProfileCard() {
+  const { setTheme } = useTheme();
+
   const { data: profile, isLoading } = useQuery({
     ...getApiProfileOptions(),
   });
@@ -54,6 +60,23 @@ export default function ProfileCard() {
             </div>
           </div>
         </DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <DropdownMenuSub>
+            <DropdownMenuSubTrigger>Theme</DropdownMenuSubTrigger>
+            <DropdownMenuSubContent>
+              <DropdownMenuItem onClick={() => setTheme('light')}>
+                Light
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTheme('dark')}>
+                Dark
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTheme('system')}>
+                System
+              </DropdownMenuItem>
+            </DropdownMenuSubContent>
+          </DropdownMenuSub>
+        </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem

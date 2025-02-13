@@ -66,7 +66,7 @@ function RouteComponent() {
                   size="icon"
                   asChild
                 >
-                  <Link to="/">
+                  <Link to="/users">
                     <UsersIcon className="size-4" />
                   </Link>
                 </Button>
@@ -92,7 +92,9 @@ function RouteComponent() {
           </RoleGuard>
         </div>
 
-        <Outlet />
+        <div className="flex flex-col size-full bg-background border rounded-md p-3">
+          <Outlet />
+        </div>
       </div>
     </div>
   );

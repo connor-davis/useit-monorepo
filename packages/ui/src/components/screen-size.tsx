@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 export const ScreenSize = () => {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
@@ -12,10 +12,10 @@ export const ScreenSize = () => {
     }
 
     updateDimensions();
-    window.addEventListener("resize", updateDimensions);
+    window.addEventListener('resize', updateDimensions);
 
     return () => {
-      window.removeEventListener("resize", updateDimensions);
+      window.removeEventListener('resize', updateDimensions);
     };
   }, []);
 
