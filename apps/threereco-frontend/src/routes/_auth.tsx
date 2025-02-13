@@ -1,5 +1,3 @@
-import { getApiProfileOptions } from '@/api-client/@tanstack/react-query.gen';
-import { useQuery } from '@tanstack/react-query';
 import {
   Link,
   Navigate,
@@ -20,6 +18,7 @@ import { TextShimmer } from '@use-it/ui/motion-ui/text-shimmer';
 import ProfileCard from '@/components/profile-card';
 import AuthenticationGuard from '@/guards/authentication';
 import RoleGuard from '@/guards/role';
+import { authClient } from '@/lib/auth-client';
 
 export const Route = createFileRoute('/_auth')({
   component: () => (
@@ -30,9 +29,7 @@ export const Route = createFileRoute('/_auth')({
 });
 
 function RouteComponent() {
-  const { data: profile, isLoading } = useQuery({
-    ...getApiProfileOptions(),
-  });
+  const { data: profile, isPending: isLoading } = authClient.useSession();
 
   if (isLoading)
     return (
@@ -41,7 +38,7 @@ function RouteComponent() {
       </div>
     );
 
-  if (profile?.role === 'user') return <Navigate to="/setup" />;
+  if (profile?.user.role === 'user') return <Navigate to="/setup" />;
 
   return (
     <div className="flex flex-col w-full h-full">
@@ -92,7 +89,7 @@ function RouteComponent() {
           </RoleGuard>
         </div>
 
-        <div className="flex flex-col size-full bg-background border rounded-md p-3">
+        <div className="flex flex-col size-full bg-background border rounded-md">
           <Outlet />
         </div>
       </div>

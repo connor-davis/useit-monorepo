@@ -1,11 +1,10 @@
 import {
-  getApiProfileOptions,
   getApiProfileQueryKey,
   patchApiOnboardingSetRoleByRoleMutation,
   postApiBusinessesMutation,
   postApiCollectorsMutation,
 } from '@/api-client/@tanstack/react-query.gen';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { useForm } from 'react-hook-form';
 
@@ -33,6 +32,8 @@ import {
   SelectValue,
 } from '@use-it/ui/components/select';
 import { Textarea } from '@use-it/ui/components/textarea';
+
+import { authClient } from '@/lib/auth-client';
 
 export const Route = createFileRoute('/_onboarding/setup')({
   component: RouteComponent,
@@ -63,9 +64,7 @@ const collectorSchema = z.object({
 function RouteComponent() {
   const navigate = useNavigate();
 
-  const { data: profile } = useQuery({
-    ...getApiProfileOptions(),
-  });
+  const { data: profile } = authClient.useSession();
 
   const queryClient = useQueryClient();
 
@@ -126,7 +125,7 @@ function RouteComponent() {
     resolver: zodResolver(collectorSchema),
   });
 
-  if (profile?.role === 'user')
+  if (profile?.user.role === 'user')
     return (
       <div className="flex flex-col w-full h-full items-center justify-center">
         <div className="flex flex-col w-auto h-auto p-3 gap-5 bg-background border rounded-md">
@@ -158,7 +157,7 @@ function RouteComponent() {
       </div>
     );
 
-  if (profile?.role === 'business')
+  if (profile?.user.role === 'business')
     return (
       <div className="flex flex-col w-full h-full items-center justify-center p-3">
         <Form {...businessForm}>
@@ -166,7 +165,7 @@ function RouteComponent() {
             onSubmit={businessForm.handleSubmit((values) =>
               createBusinessProfile.mutate({
                 body: {
-                  userId: profile.id,
+                  userId: profile.user.id,
                   ...values,
                 },
               })
@@ -348,7 +347,7 @@ function RouteComponent() {
       </div>
     );
 
-  if (profile?.role === 'collector')
+  if (profile?.user.role === 'collector')
     return (
       <div className="flex flex-col w-full h-full items-center justify-center p-3">
         <Form {...collectorForm}>
@@ -356,7 +355,7 @@ function RouteComponent() {
             onSubmit={collectorForm.handleSubmit((values) =>
               createCollectorProfile.mutate({
                 body: {
-                  userId: profile.id,
+                  userId: profile.user.id,
                   ...values,
                 },
               })

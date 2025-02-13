@@ -3,6 +3,11 @@
 /* @import url("/node_modules/react-grid-layout/css/styles.css"); */
 /* @import url("/node_modules/react-resizable/css/styles.css"); */
 
+::selection {
+  color: var(--foreground);
+  background: var(--primary);
+}
+
 @import 'tailwindcss';
 
 @plugin "tailwindcss-animate";
@@ -170,11 +175,6 @@
   body {
     @apply bg-primary text-foreground;
   }
-}
-
-::selection {
-  color: hsl(var(--primary-foreground));
-  background-color: hsl(var(--primary));
 }
 
 /* Frosted Glass Effect */

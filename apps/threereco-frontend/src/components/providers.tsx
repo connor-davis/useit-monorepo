@@ -7,8 +7,8 @@ import { queryClient } from '@/lib/query-client';
 
 export default function Providers({ children }: { children: ReactNode }) {
   return (
-    <UiProviders>
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-    </UiProviders>
+    <QueryClientProvider client={queryClient}>
+      <UiProviders>{children}</UiProviders>
+    </QueryClientProvider>
   );
 }

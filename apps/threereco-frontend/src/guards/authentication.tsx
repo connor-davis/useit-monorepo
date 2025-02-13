@@ -10,11 +10,7 @@ export default function AuthenticationGuard({
 }: {
   children: ReactNode;
 }) {
-  const {
-    data: session,
-    isPending, //loading state
-    error, //error object
-  } = authClient.useSession();
+  const { data: session, isPending, error } = authClient.useSession();
 
   if (isPending)
     return (

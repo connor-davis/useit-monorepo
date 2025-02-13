@@ -1,5 +1,3 @@
-import { getApiProfileOptions } from '@/api-client/@tanstack/react-query.gen';
-import { useQuery } from '@tanstack/react-query';
 import { UserIcon } from 'lucide-react';
 
 import {
@@ -23,14 +21,18 @@ import { Label } from '@use-it/ui/components/label';
 import { Skeleton } from '@use-it/ui/components/skeleton';
 import { useTheme } from '@use-it/ui/components/theme-provider';
 
+import useIsImpersonating from '@/hooks/use-is-impersonating';
 import { authClient } from '@/lib/auth-client';
 
 export default function ProfileCard() {
   const { setTheme } = useTheme();
+  const impersonating = useIsImpersonating();
 
-  const { data: profile, isLoading } = useQuery({
-    ...getApiProfileOptions(),
-  });
+  const {
+    data: profile,
+    isPending: isLoading,
+    refetch,
+  } = authClient.useSession();
 
   if (isLoading) return <Skeleton className="w-10 h-10 rounded-full" />;
   if (!profile) return <Skeleton className="w-10 h-10 rounded-full" />;
@@ -39,7 +41,7 @@ export default function ProfileCard() {
     <DropdownMenu>
       <DropdownMenuTrigger>
         <Avatar className="cursor-pointer">
-          <AvatarImage src={profile.image} alt={profile.name} />
+          <AvatarImage src={profile.user.image ?? ''} alt={profile.user.name} />
           <AvatarFallback>
             <UserIcon className="size-4" />
           </AvatarFallback>
@@ -49,14 +51,19 @@ export default function ProfileCard() {
         <DropdownMenuLabel>
           <div className="flex items-center gap-3">
             <Avatar>
-              <AvatarImage src={profile.image} alt={profile.name} />
+              <AvatarImage
+                src={profile.user.image ?? ''}
+                alt={profile.user.name}
+              />
               <AvatarFallback className="bg-muted">
                 <UserIcon className="size-4" />
               </AvatarFallback>
             </Avatar>
             <div className="flex flex-col gap-1">
-              <Label>{profile.name}</Label>
-              <Label className="text-muted-foreground">{profile.email}</Label>
+              <Label>{profile.user.name}</Label>
+              <Label className="text-muted-foreground">
+                {profile.user.email}
+              </Label>
             </div>
           </div>
         </DropdownMenuLabel>
@@ -79,6 +86,18 @@ export default function ProfileCard() {
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
+          {impersonating && (
+            <DropdownMenuItem
+              className="cursor-pointer"
+              onClick={async () => {
+                await authClient.admin.stopImpersonating();
+
+                refetch();
+              }}
+            >
+              Stop Controlling User
+            </DropdownMenuItem>
+          )}
           <DropdownMenuItem
             className="cursor-pointer"
             onClick={async () => await authClient.signOut()}
