@@ -1,10 +1,9 @@
 import {
-  getApiProfileQueryKey,
   patchApiOnboardingSetRoleByRoleMutation,
   postApiBusinessesMutation,
   postApiCollectorsMutation,
 } from '@/api-client/@tanstack/react-query.gen';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { useForm } from 'react-hook-form';
 
@@ -64,9 +63,7 @@ const collectorSchema = z.object({
 function RouteComponent() {
   const navigate = useNavigate();
 
-  const { data: profile } = authClient.useSession();
-
-  const queryClient = useQueryClient();
+  const { data: profile, refetch } = authClient.useSession();
 
   const updateUserRole = useMutation({
     ...patchApiOnboardingSetRoleByRoleMutation(),
@@ -75,8 +72,7 @@ function RouteComponent() {
         description: error.message,
         duration: 2000,
       }),
-    onSuccess: () =>
-      queryClient.invalidateQueries({ queryKey: getApiProfileQueryKey() }),
+    onSuccess: () => refetch(),
   });
 
   const createBusinessProfile = useMutation({
@@ -91,7 +87,7 @@ function RouteComponent() {
         description: "Your business's profile information has been saved.",
         duration: 2000,
         onAutoClose: () => {
-          queryClient.invalidateQueries({ queryKey: getApiProfileQueryKey() });
+          refetch();
 
           return navigate({ to: '/' });
         },
@@ -110,7 +106,7 @@ function RouteComponent() {
         description: 'Your profile information has been saved.',
         duration: 2000,
         onAutoClose: () => {
-          queryClient.invalidateQueries({ queryKey: getApiProfileQueryKey() });
+          refetch();
 
           return navigate({ to: '/' });
         },
@@ -170,9 +166,9 @@ function RouteComponent() {
                 },
               })
             )}
-            className="flex flex-col w-full lg:w-1/2 h-auto p-3 gap-10 bg-background border rounded-md overflow-hidden"
+            className="flex flex-col w-full lg:w-1/2 h-auto gap-4 bg-background border rounded-md overflow-hidden"
           >
-            <div className="flex flex-col w-full h-auto gap-3 text-center">
+            <div className="flex flex-col w-full h-auto p-3 gap-3 text-center">
               <Label className="text-primary font-bold text-2xl">
                 Business Setup
               </Label>
@@ -181,7 +177,7 @@ function RouteComponent() {
               </Label>
             </div>
 
-            <div className="flex flex-col w-full h-auto gap-5 overflow-y-auto">
+            <div className="flex flex-col w-full h-auto gap-5 overflow-y-auto p-3">
               <Label className="text-primary font-bold">Profile Details</Label>
 
               <div className="flex flex-col w-full h-auto gap-3">
@@ -333,15 +329,19 @@ function RouteComponent() {
               </div>
             </div>
 
-            <Button type="submit">Continue</Button>
+            <div className="flex flex-col w-full h-auto gap-3 p-3">
+              <Button type="submit">Continue</Button>
 
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => updateUserRole.mutate({ path: { role: 'user' } })}
-            >
-              Cancel
-            </Button>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() =>
+                  updateUserRole.mutate({ path: { role: 'user' } })
+                }
+              >
+                Cancel
+              </Button>
+            </div>
           </form>
         </Form>
       </div>
@@ -360,9 +360,9 @@ function RouteComponent() {
                 },
               })
             )}
-            className="flex flex-col w-full lg:w-1/2 h-auto p-3 gap-10 bg-background border rounded-md overflow-hidden"
+            className="flex flex-col w-full lg:w-1/2 h-auto gap-4 bg-background border rounded-md overflow-hidden"
           >
-            <div className="flex flex-col w-full h-auto gap-3 text-center">
+            <div className="flex flex-col w-full h-auto gap-3 p-3 text-center">
               <Label className="text-primary font-bold text-2xl">
                 Collector Setup
               </Label>
@@ -371,7 +371,7 @@ function RouteComponent() {
               </Label>
             </div>
 
-            <div className="flex flex-col w-full h-auto gap-5 overflow-y-auto">
+            <div className="flex flex-col w-full h-auto gap-5 overflow-y-auto p-3">
               <Label className="text-primary font-bold">Profile Details</Label>
 
               <div className="flex flex-col w-full h-auto gap-3">
@@ -550,15 +550,19 @@ function RouteComponent() {
               </div>
             </div>
 
-            <Button type="submit">Continue</Button>
+            <div className="flex flex-col w-full h-auto gap-3 p-3">
+              <Button type="submit">Continue</Button>
 
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => updateUserRole.mutate({ path: { role: 'user' } })}
-            >
-              Cancel
-            </Button>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() =>
+                  updateUserRole.mutate({ path: { role: 'user' } })
+                }
+              >
+                Cancel
+              </Button>
+            </div>
           </form>
         </Form>
       </div>

@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { JoystickIcon, UserIcon } from 'lucide-react';
 
 import {
@@ -29,13 +29,15 @@ export const Route = createFileRoute('/_auth/users/')({
 });
 
 function RouteComponent() {
+  const navigate = useNavigate();
+
   const { refetch } = authClient.useSession();
 
   const { users, searchValue, setSearchValue, fetchUsers } = useAdminUsers();
 
   return (
     <div className="flex flex-col w-full h-full overflow-hidden gap-3 p-3">
-      <div className="flex flex-col lg:flex-row gap-3 items-center lg:justify-between">
+      <div className="flex flex-col lg:flex-row gap-3 lg:items-center lg:justify-between">
         <Label className="font-bold text-lg">Users</Label>
 
         <div className="flex items-center">
@@ -86,6 +88,8 @@ function RouteComponent() {
                       });
 
                       refetch();
+
+                      return navigate({ to: '/', replace: true });
                     }}
                   >
                     <JoystickIcon className="size-4" />

@@ -43,7 +43,7 @@ function RouteComponent() {
   });
 
   return (
-    <div className="flex flex-col w-full h-full items-center justify-center">
+    <div className="flex flex-col w-full h-full items-center justify-center p-3">
       <div className="flex flex-col w-auto h-auto p-3 gap-6 bg-background border rounded-md">
         <div className="flex flex-col w-full h-auto gap-3 text-center">
           <Label className="text-primary font-bold text-2xl">

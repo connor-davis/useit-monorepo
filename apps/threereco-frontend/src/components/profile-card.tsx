@@ -1,3 +1,4 @@
+import { useNavigate } from '@tanstack/react-router';
 import { UserIcon } from 'lucide-react';
 
 import {
@@ -25,6 +26,7 @@ import useIsImpersonating from '@/hooks/use-is-impersonating';
 import { authClient } from '@/lib/auth-client';
 
 export default function ProfileCard() {
+  const navigate = useNavigate();
   const { setTheme } = useTheme();
   const impersonating = useIsImpersonating();
 
@@ -93,6 +95,8 @@ export default function ProfileCard() {
                 await authClient.admin.stopImpersonating();
 
                 refetch();
+
+                return navigate({ to: '/', replace: true });
               }}
             >
               Stop Controlling User
