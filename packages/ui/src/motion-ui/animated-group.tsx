@@ -1,4 +1,4 @@
-import { motion, Variants } from 'motion/react';
+import { Variants, motion } from 'motion/react';
 import React, { ReactNode } from 'react';
 
 type PresetType =

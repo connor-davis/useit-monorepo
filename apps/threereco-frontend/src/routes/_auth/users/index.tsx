@@ -47,7 +47,6 @@ function RouteComponent() {
             defaultValue={searchValue}
             value={searchValue}
             onChange={(event) => {
-              console.log(event);
               setSearchValue(event.target.value);
             }}
           />
@@ -55,7 +54,13 @@ function RouteComponent() {
       </div>
 
       <div className="flex flex-col w-full h-full overflow-y-auto gap-3">
-        {users.map((user) => (
+        {users?.length === 0 && (
+          <div className="flex flex-col w-full h-full items-center justify-center gap-3 p-3">
+            <Label className="text-muted-foreground">No users found.</Label>
+          </div>
+        )}
+
+        {users?.map((user) => (
           <div className="flex items-center gap-1 p-1 border rounded-md">
             <Button
               variant="ghost"

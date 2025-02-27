@@ -18,6 +18,10 @@ import { Route as AuthenticationRegisterImport } from './routes/authentication/r
 import { Route as AuthenticationLoginImport } from './routes/authentication/login'
 import { Route as OnboardingSetupImport } from './routes/_onboarding/setup'
 import { Route as AuthUsersIndexImport } from './routes/_auth/users/index'
+import { Route as AuthMaterialsIndexImport } from './routes/_auth/materials/index'
+import { Route as AuthMaterialsCreateImport } from './routes/_auth/materials/create'
+import { Route as AuthMaterialsIdImport } from './routes/_auth/materials/$id'
+import { Route as AuthMaterialsEditIdImport } from './routes/_auth/materials/edit/$id'
 
 // Create/Update Routes
 
@@ -58,6 +62,30 @@ const OnboardingSetupRoute = OnboardingSetupImport.update({
 const AuthUsersIndexRoute = AuthUsersIndexImport.update({
   id: '/users/',
   path: '/users/',
+  getParentRoute: () => AuthRoute,
+} as any)
+
+const AuthMaterialsIndexRoute = AuthMaterialsIndexImport.update({
+  id: '/materials/',
+  path: '/materials/',
+  getParentRoute: () => AuthRoute,
+} as any)
+
+const AuthMaterialsCreateRoute = AuthMaterialsCreateImport.update({
+  id: '/materials/create',
+  path: '/materials/create',
+  getParentRoute: () => AuthRoute,
+} as any)
+
+const AuthMaterialsIdRoute = AuthMaterialsIdImport.update({
+  id: '/materials/$id',
+  path: '/materials/$id',
+  getParentRoute: () => AuthRoute,
+} as any)
+
+const AuthMaterialsEditIdRoute = AuthMaterialsEditIdImport.update({
+  id: '/materials/edit/$id',
+  path: '/materials/edit/$id',
   getParentRoute: () => AuthRoute,
 } as any)
 
@@ -107,11 +135,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthIndexImport
       parentRoute: typeof AuthImport
     }
+    '/_auth/materials/$id': {
+      id: '/_auth/materials/$id'
+      path: '/materials/$id'
+      fullPath: '/materials/$id'
+      preLoaderRoute: typeof AuthMaterialsIdImport
+      parentRoute: typeof AuthImport
+    }
+    '/_auth/materials/create': {
+      id: '/_auth/materials/create'
+      path: '/materials/create'
+      fullPath: '/materials/create'
+      preLoaderRoute: typeof AuthMaterialsCreateImport
+      parentRoute: typeof AuthImport
+    }
+    '/_auth/materials/': {
+      id: '/_auth/materials/'
+      path: '/materials'
+      fullPath: '/materials'
+      preLoaderRoute: typeof AuthMaterialsIndexImport
+      parentRoute: typeof AuthImport
+    }
     '/_auth/users/': {
       id: '/_auth/users/'
       path: '/users'
       fullPath: '/users'
       preLoaderRoute: typeof AuthUsersIndexImport
+      parentRoute: typeof AuthImport
+    }
+    '/_auth/materials/edit/$id': {
+      id: '/_auth/materials/edit/$id'
+      path: '/materials/edit/$id'
+      fullPath: '/materials/edit/$id'
+      preLoaderRoute: typeof AuthMaterialsEditIdImport
       parentRoute: typeof AuthImport
     }
   }
@@ -121,12 +177,20 @@ declare module '@tanstack/react-router' {
 
 interface AuthRouteChildren {
   AuthIndexRoute: typeof AuthIndexRoute
+  AuthMaterialsIdRoute: typeof AuthMaterialsIdRoute
+  AuthMaterialsCreateRoute: typeof AuthMaterialsCreateRoute
+  AuthMaterialsIndexRoute: typeof AuthMaterialsIndexRoute
   AuthUsersIndexRoute: typeof AuthUsersIndexRoute
+  AuthMaterialsEditIdRoute: typeof AuthMaterialsEditIdRoute
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
   AuthIndexRoute: AuthIndexRoute,
+  AuthMaterialsIdRoute: AuthMaterialsIdRoute,
+  AuthMaterialsCreateRoute: AuthMaterialsCreateRoute,
+  AuthMaterialsIndexRoute: AuthMaterialsIndexRoute,
   AuthUsersIndexRoute: AuthUsersIndexRoute,
+  AuthMaterialsEditIdRoute: AuthMaterialsEditIdRoute,
 }
 
 const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
@@ -149,7 +213,11 @@ export interface FileRoutesByFullPath {
   '/authentication/login': typeof AuthenticationLoginRoute
   '/authentication/register': typeof AuthenticationRegisterRoute
   '/': typeof AuthIndexRoute
+  '/materials/$id': typeof AuthMaterialsIdRoute
+  '/materials/create': typeof AuthMaterialsCreateRoute
+  '/materials': typeof AuthMaterialsIndexRoute
   '/users': typeof AuthUsersIndexRoute
+  '/materials/edit/$id': typeof AuthMaterialsEditIdRoute
 }
 
 export interface FileRoutesByTo {
@@ -158,7 +226,11 @@ export interface FileRoutesByTo {
   '/authentication/login': typeof AuthenticationLoginRoute
   '/authentication/register': typeof AuthenticationRegisterRoute
   '/': typeof AuthIndexRoute
+  '/materials/$id': typeof AuthMaterialsIdRoute
+  '/materials/create': typeof AuthMaterialsCreateRoute
+  '/materials': typeof AuthMaterialsIndexRoute
   '/users': typeof AuthUsersIndexRoute
+  '/materials/edit/$id': typeof AuthMaterialsEditIdRoute
 }
 
 export interface FileRoutesById {
@@ -169,7 +241,11 @@ export interface FileRoutesById {
   '/authentication/login': typeof AuthenticationLoginRoute
   '/authentication/register': typeof AuthenticationRegisterRoute
   '/_auth/': typeof AuthIndexRoute
+  '/_auth/materials/$id': typeof AuthMaterialsIdRoute
+  '/_auth/materials/create': typeof AuthMaterialsCreateRoute
+  '/_auth/materials/': typeof AuthMaterialsIndexRoute
   '/_auth/users/': typeof AuthUsersIndexRoute
+  '/_auth/materials/edit/$id': typeof AuthMaterialsEditIdRoute
 }
 
 export interface FileRouteTypes {
@@ -180,7 +256,11 @@ export interface FileRouteTypes {
     | '/authentication/login'
     | '/authentication/register'
     | '/'
+    | '/materials/$id'
+    | '/materials/create'
+    | '/materials'
     | '/users'
+    | '/materials/edit/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | ''
@@ -188,7 +268,11 @@ export interface FileRouteTypes {
     | '/authentication/login'
     | '/authentication/register'
     | '/'
+    | '/materials/$id'
+    | '/materials/create'
+    | '/materials'
     | '/users'
+    | '/materials/edit/$id'
   id:
     | '__root__'
     | '/_auth'
@@ -197,7 +281,11 @@ export interface FileRouteTypes {
     | '/authentication/login'
     | '/authentication/register'
     | '/_auth/'
+    | '/_auth/materials/$id'
+    | '/_auth/materials/create'
+    | '/_auth/materials/'
     | '/_auth/users/'
+    | '/_auth/materials/edit/$id'
   fileRoutesById: FileRoutesById
 }
 
@@ -235,7 +323,11 @@ export const routeTree = rootRoute
       "filePath": "_auth.tsx",
       "children": [
         "/_auth/",
-        "/_auth/users/"
+        "/_auth/materials/$id",
+        "/_auth/materials/create",
+        "/_auth/materials/",
+        "/_auth/users/",
+        "/_auth/materials/edit/$id"
       ]
     },
     "/_onboarding": {
@@ -258,8 +350,24 @@ export const routeTree = rootRoute
       "filePath": "_auth/index.tsx",
       "parent": "/_auth"
     },
+    "/_auth/materials/$id": {
+      "filePath": "_auth/materials/$id.tsx",
+      "parent": "/_auth"
+    },
+    "/_auth/materials/create": {
+      "filePath": "_auth/materials/create.tsx",
+      "parent": "/_auth"
+    },
+    "/_auth/materials/": {
+      "filePath": "_auth/materials/index.tsx",
+      "parent": "/_auth"
+    },
     "/_auth/users/": {
       "filePath": "_auth/users/index.tsx",
+      "parent": "/_auth"
+    },
+    "/_auth/materials/edit/$id": {
+      "filePath": "_auth/materials/edit/$id.tsx",
       "parent": "/_auth"
     }
   }

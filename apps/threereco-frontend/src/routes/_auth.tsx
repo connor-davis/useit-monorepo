@@ -46,7 +46,7 @@ function RouteComponent() {
           </div>
         </div>
 
-        <div className="flex flex-col size-full bg-background border rounded-md">
+        <div className="flex flex-col size-full bg-background border rounded-md overflow-hidden">
           <Outlet />
         </div>
       </div>

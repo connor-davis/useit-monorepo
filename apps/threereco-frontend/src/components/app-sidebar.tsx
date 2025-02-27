@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router';
-import { UsersIcon } from 'lucide-react';
+import { PackageIcon, UsersIcon } from 'lucide-react';
 
 import {
   Sidebar,
@@ -27,6 +27,14 @@ export default function AppSidebar() {
                   <Link to="/users">
                     <UsersIcon className="size-4" />
                     <p>Users</p>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton variant="outline" asChild>
+                  <Link to="/materials">
+                    <PackageIcon className="size-4" />
+                    <p>Materials</p>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
